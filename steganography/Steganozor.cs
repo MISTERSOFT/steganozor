@@ -1,13 +1,7 @@
 ﻿using steganography.Exceptions;
 using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
 using System.Drawing;
-using System.IO;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System.Threading;
 using System.Windows.Forms;
 
 namespace steganography
@@ -76,6 +70,10 @@ namespace steganography
         /// <param name="e"></param>
         private void btnRun_Click(object sender, EventArgs e)
         {
+            btnRun.Enabled = false;
+            btnRun.Text = "Please wait while processing...";
+            //Thread.Sleep(100);
+
             try
             {
                 Bitmap result = steganolizer.Execute();
@@ -92,6 +90,10 @@ namespace steganography
             catch (SourceImageHeightGreaterThanHost ex)
             {
                 Alerter.Error(ex.Message, "Info");
+            } finally
+            {
+                btnRun.Text = "Run";
+                btnRun.Enabled = true;
             }
         }
 
@@ -149,6 +151,9 @@ namespace steganography
             }
         }
 
+        /// <summary>
+        /// Check if we can run the proccess which use steganography
+        /// </summary>
         private void EnableApplySteganography()
         {
             if (steganolizer.AreImagesReady() && saveDestPath != string.Empty)
@@ -157,6 +162,12 @@ namespace steganography
             }
         }
 
+
+        /// <summary>
+        /// Handle the shift value given by the track bar
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void trackBarShiftLevel_Scroll(object sender, EventArgs e)
         {
             steganolizer.Shift = trackBarShiftLevel.Value;

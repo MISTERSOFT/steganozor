@@ -1,17 +1,21 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Drawing;
 using steganography.Exceptions;
 
 namespace steganography
 {
     public class Steganolizer
     {
+        /// <summary>
+        /// Host image
+        /// </summary>
         private Bitmap hostImage;
+        /// <summary>
+        /// Image which will be hide into the host image
+        /// </summary>
         private Bitmap srcImage;
+        /// <summary>
+        /// Use to shift bits
+        /// </summary>
         private int shift;
 
         public Steganolizer()
@@ -68,9 +72,9 @@ namespace steganography
         }
 
         /// <summary>
-        /// 
+        /// Use steganograpghy to hide source image into the host image.
         /// </summary>
-        /// <returns></returns>
+        /// <returns>Both images in one</returns>
         public Bitmap Execute()
         {
             CheckBeforeExecute();
@@ -123,11 +127,22 @@ namespace steganography
             return value >> shift;
         }
 
+        /// <summary>
+        /// Add 0 to the value from right to left
+        /// </summary>
+        /// <param name="value"></param>
+        /// <returns></returns>
         private int To8Bits(int value)
         {
             return value << shift;
         }
 
+        /// <summary>
+        /// Addition host color value MSB with source image MSB
+        /// </summary>
+        /// <param name="hostValue"></param>
+        /// <param name="srcValue"></param>
+        /// <returns></returns>
         private int CombineBits(int hostValue, int srcValue)
         {
             return To8Bits(GetMSB(hostValue)) + GetMSB(srcValue);
