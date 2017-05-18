@@ -1,6 +1,6 @@
 ﻿namespace steganography
 {
-    partial class Stegano
+    partial class Steganozor
     {
         /// <summary>
         /// Variable nécessaire au concepteur.
@@ -39,10 +39,15 @@
             this.openFileDialogImage = new System.Windows.Forms.OpenFileDialog();
             this.btnHost = new System.Windows.Forms.Button();
             this.btnSrc = new System.Windows.Forms.Button();
+            this.groupBox3 = new System.Windows.Forms.GroupBox();
+            this.btnSelectPath = new System.Windows.Forms.Button();
+            this.tbSaveDst = new System.Windows.Forms.TextBox();
+            this.saveFileDialogDst = new System.Windows.Forms.SaveFileDialog();
             this.tabControl1.SuspendLayout();
             this.tabPageHideImg.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.groupBox1.SuspendLayout();
+            this.groupBox3.SuspendLayout();
             this.SuspendLayout();
             // 
             // tabControl1
@@ -53,18 +58,19 @@
             this.tabControl1.Location = new System.Drawing.Point(0, 0);
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
-            this.tabControl1.Size = new System.Drawing.Size(625, 179);
+            this.tabControl1.Size = new System.Drawing.Size(625, 272);
             this.tabControl1.TabIndex = 0;
             // 
             // tabPageHideImg
             // 
+            this.tabPageHideImg.Controls.Add(this.groupBox3);
             this.tabPageHideImg.Controls.Add(this.btnRun);
             this.tabPageHideImg.Controls.Add(this.groupBox2);
             this.tabPageHideImg.Controls.Add(this.groupBox1);
             this.tabPageHideImg.Location = new System.Drawing.Point(4, 22);
             this.tabPageHideImg.Name = "tabPageHideImg";
             this.tabPageHideImg.Padding = new System.Windows.Forms.Padding(10);
-            this.tabPageHideImg.Size = new System.Drawing.Size(617, 153);
+            this.tabPageHideImg.Size = new System.Drawing.Size(617, 246);
             this.tabPageHideImg.TabIndex = 0;
             this.tabPageHideImg.Text = "Hide image";
             this.tabPageHideImg.UseVisualStyleBackColor = true;
@@ -73,7 +79,7 @@
             // 
             this.btnRun.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.btnRun.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnRun.Location = new System.Drawing.Point(10, 120);
+            this.btnRun.Location = new System.Drawing.Point(10, 213);
             this.btnRun.Name = "btnRun";
             this.btnRun.Size = new System.Drawing.Size(597, 23);
             this.btnRun.TabIndex = 5;
@@ -153,11 +159,40 @@
             this.btnSrc.UseVisualStyleBackColor = true;
             this.btnSrc.Click += new System.EventHandler(this.btnSrc_Click);
             // 
+            // groupBox3
+            // 
+            this.groupBox3.Controls.Add(this.btnSelectPath);
+            this.groupBox3.Controls.Add(this.tbSaveDst);
+            this.groupBox3.Dock = System.Windows.Forms.DockStyle.Top;
+            this.groupBox3.Location = new System.Drawing.Point(10, 114);
+            this.groupBox3.Name = "groupBox3";
+            this.groupBox3.Size = new System.Drawing.Size(597, 52);
+            this.groupBox3.TabIndex = 6;
+            this.groupBox3.TabStop = false;
+            this.groupBox3.Text = "Save destination";
+            // 
+            // btnSelectPath
+            // 
+            this.btnSelectPath.Location = new System.Drawing.Point(497, 17);
+            this.btnSelectPath.Name = "btnSelectPath";
+            this.btnSelectPath.Size = new System.Drawing.Size(94, 23);
+            this.btnSelectPath.TabIndex = 2;
+            this.btnSelectPath.Text = "Select path...";
+            this.btnSelectPath.UseVisualStyleBackColor = true;
+            this.btnSelectPath.Click += new System.EventHandler(this.btnSelectPath_Click);
+            // 
+            // tbSaveDst
+            // 
+            this.tbSaveDst.Location = new System.Drawing.Point(6, 19);
+            this.tbSaveDst.Name = "tbSaveDst";
+            this.tbSaveDst.Size = new System.Drawing.Size(485, 20);
+            this.tbSaveDst.TabIndex = 1;
+            // 
             // Stegano
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(625, 179);
+            this.ClientSize = new System.Drawing.Size(625, 272);
             this.Controls.Add(this.tabControl1);
             this.Name = "Stegano";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
@@ -168,6 +203,8 @@
             this.groupBox2.PerformLayout();
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
+            this.groupBox3.ResumeLayout(false);
+            this.groupBox3.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -185,6 +222,10 @@
         private System.Windows.Forms.OpenFileDialog openFileDialogImage;
         private System.Windows.Forms.Button btnSrc;
         private System.Windows.Forms.Button btnHost;
+        private System.Windows.Forms.GroupBox groupBox3;
+        private System.Windows.Forms.Button btnSelectPath;
+        private System.Windows.Forms.TextBox tbSaveDst;
+        private System.Windows.Forms.SaveFileDialog saveFileDialogDst;
     }
 }
 

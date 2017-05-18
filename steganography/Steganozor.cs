@@ -11,20 +11,28 @@ using System.Windows.Forms;
 
 namespace steganography
 {
-    public partial class Stegano : Form
+    public partial class Steganozor : Form
     {
-        private Image hostImage;
-        private Image srcImage;
         private enum IMG
         {
             HOST,
             SRC
         };
 
-        public Stegano()
+        private Steganolizer steganolizer;
+        private string saveDestPath;
+
+        public Steganozor()
         {
             InitializeComponent();
-            openFileDialogImage.Filter = "*.png|*.jpeg|*.jpg|*.bmp|*.gif";
+
+            // Config variables
+            steganolizer = new Steganolizer();
+            saveDestPath = string.Empty;
+
+            // Config components
+            openFileDialogImage.Filter = "JPeg Image|*.jpg|Bitmap Image|*.bmp|Gif Image|*.gif|Png Image|*.png";
+            btnRun.Enabled = false;
         }
 
         /// <summary>
@@ -37,6 +45,8 @@ namespace steganography
             openFileDialogImage.Title = "Select the host image";
 
             DisplaySelectImage(IMG.HOST);
+
+            EnableApplySteganography();
         }
 
         /// <summary>
@@ -49,6 +59,8 @@ namespace steganography
             openFileDialogImage.Title = "Select the image to hide";
 
             DisplaySelectImage(IMG.SRC);
+
+            EnableApplySteganography();
         }
 
         /// <summary>
@@ -61,6 +73,27 @@ namespace steganography
 
         }
 
+        /// <summary>
+        /// Select save destination
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void btnSelectPath_Click(object sender, EventArgs e)
+        {
+            DialogResult result = saveFileDialogDst.ShowDialog();
+            if (result == DialogResult.OK)
+            {
+                if (saveFileDialogDst.FileName != string.Empty)
+                {
+                    saveDestPath = saveFileDialogDst.FileName;
+                }
+            }
+        }
+
+        /// <summary>
+        /// Display a file dialog to get image.
+        /// </summary>
+        /// <param name="type"></param>
         private void DisplaySelectImage(IMG type)
         {
             DialogResult dialogResult = openFileDialogImage.ShowDialog();
@@ -71,15 +104,30 @@ namespace steganography
                 {
                     if (type.Equals(IMG.HOST))
                     {
-                        hostImage = Image.FromFile(openFileDialogImage.FileName);
+
+                        steganolizer.HostImage = Image.FromFile(openFileDialogImage.FileName);
+
                     } else
                     {
-                        srcImage = Image.FromFile(openFileDialogImage.FileName);
+
+                        steganolizer.SrcImage = Image.FromFile(openFileDialogImage.FileName);
+
                     }
                 } catch (Exception ex) {
+
                     MessageBox.Show("An error occured. Can not get image.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+
                 }
             }
         }
+
+        private void EnableApplySteganography()
+        {
+            if (steganolizer.AreImagesReady() && saveDestPath != string.Empty)
+            {
+                btnRun.Enabled = true;
+            }
+        }
+
     }
 }

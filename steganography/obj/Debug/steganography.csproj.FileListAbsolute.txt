@@ -1,0 +1,10 @@
+F:\Projets\c_sharp\steganography\steganography\bin\Debug\steganography.exe.config
+F:\Projets\c_sharp\steganography\steganography\bin\Debug\steganography.exe
+F:\Projets\c_sharp\steganography\steganography\bin\Debug\steganography.pdb
+F:\Projets\c_sharp\steganography\steganography\obj\Debug\steganography.csprojResolveAssemblyReference.cache
+F:\Projets\c_sharp\steganography\steganography\obj\Debug\steganography.Properties.Resources.resources
+F:\Projets\c_sharp\steganography\steganography\obj\Debug\steganography.Stegano.resources
+F:\Projets\c_sharp\steganography\steganography\obj\Debug\steganography.csproj.GenerateResource.Cache
+F:\Projets\c_sharp\steganography\steganography\obj\Debug\steganography.exe
+F:\Projets\c_sharp\steganography\steganography\obj\Debug\steganography.pdb
+F:\Projets\c_sharp\steganography\steganography\obj\Debug\steganography.Steganozor.resources

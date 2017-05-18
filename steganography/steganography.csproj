@@ -46,11 +46,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Stegano.cs">
+    <Compile Include="Steganalizer.cs" />
+    <Compile Include="Steganozor.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Stegano.Designer.cs">
-      <DependentUpon>Stegano.cs</DependentUpon>
+    <Compile Include="Steganozor.Designer.cs">
+      <DependentUpon>Steganozor.cs</DependentUpon>
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -63,8 +64,8 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
-    <EmbeddedResource Include="Stegano.resx">
-      <DependentUpon>Stegano.cs</DependentUpon>
+    <EmbeddedResource Include="Steganozor.resx">
+      <DependentUpon>Steganozor.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
