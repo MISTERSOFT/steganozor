@@ -47,6 +47,7 @@
             this.label1 = new System.Windows.Forms.Label();
             this.groupBox4 = new System.Windows.Forms.GroupBox();
             this.trackBarShiftLevel = new System.Windows.Forms.TrackBar();
+            this.label2 = new System.Windows.Forms.Label();
             this.tabControl1.SuspendLayout();
             this.tabPageHideImg.SuspendLayout();
             this.groupBox3.SuspendLayout();
@@ -64,7 +65,7 @@
             this.tabControl1.Location = new System.Drawing.Point(0, 0);
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
-            this.tabControl1.Size = new System.Drawing.Size(625, 411);
+            this.tabControl1.Size = new System.Drawing.Size(625, 343);
             this.tabControl1.TabIndex = 0;
             // 
             // tabPageHideImg
@@ -77,7 +78,7 @@
             this.tabPageHideImg.Location = new System.Drawing.Point(4, 22);
             this.tabPageHideImg.Name = "tabPageHideImg";
             this.tabPageHideImg.Padding = new System.Windows.Forms.Padding(10);
-            this.tabPageHideImg.Size = new System.Drawing.Size(617, 385);
+            this.tabPageHideImg.Size = new System.Drawing.Size(617, 317);
             this.tabPageHideImg.TabIndex = 0;
             this.tabPageHideImg.Text = "Hide image";
             this.tabPageHideImg.UseVisualStyleBackColor = true;
@@ -89,6 +90,7 @@
             this.groupBox3.Controls.Add(this.btnSelectPath);
             this.groupBox3.Controls.Add(this.tbSaveDst);
             this.groupBox3.Dock = System.Windows.Forms.DockStyle.Top;
+            this.groupBox3.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.groupBox3.Location = new System.Drawing.Point(10, 114);
             this.groupBox3.Name = "groupBox3";
             this.groupBox3.Size = new System.Drawing.Size(597, 73);
@@ -118,9 +120,9 @@
             // 
             this.btnRun.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.btnRun.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnRun.Location = new System.Drawing.Point(10, 352);
+            this.btnRun.Location = new System.Drawing.Point(10, 277);
             this.btnRun.Name = "btnRun";
-            this.btnRun.Size = new System.Drawing.Size(597, 23);
+            this.btnRun.Size = new System.Drawing.Size(597, 30);
             this.btnRun.TabIndex = 5;
             this.btnRun.Text = "Run";
             this.btnRun.UseVisualStyleBackColor = true;
@@ -216,27 +218,41 @@
             // 
             // groupBox4
             // 
+            this.groupBox4.Controls.Add(this.label2);
             this.groupBox4.Controls.Add(this.trackBarShiftLevel);
             this.groupBox4.Dock = System.Windows.Forms.DockStyle.Top;
+            this.groupBox4.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.groupBox4.Location = new System.Drawing.Point(10, 187);
             this.groupBox4.Name = "groupBox4";
-            this.groupBox4.Size = new System.Drawing.Size(597, 73);
+            this.groupBox4.Size = new System.Drawing.Size(597, 81);
             this.groupBox4.TabIndex = 7;
             this.groupBox4.TabStop = false;
             this.groupBox4.Text = "Shift level";
             // 
             // trackBarShiftLevel
             // 
-            this.trackBarShiftLevel.Location = new System.Drawing.Point(6, 22);
+            this.trackBarShiftLevel.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.trackBarShiftLevel.Location = new System.Drawing.Point(3, 33);
             this.trackBarShiftLevel.Name = "trackBarShiftLevel";
-            this.trackBarShiftLevel.Size = new System.Drawing.Size(585, 45);
+            this.trackBarShiftLevel.Size = new System.Drawing.Size(591, 45);
             this.trackBarShiftLevel.TabIndex = 0;
+            this.trackBarShiftLevel.Scroll += new System.EventHandler(this.trackBarShiftLevel_Scroll);
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label2.Location = new System.Drawing.Point(6, 16);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(110, 13);
+            this.label2.TabIndex = 1;
+            this.label2.Text = "Value use to shift bits.";
             // 
             // Steganozor
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(625, 411);
+            this.ClientSize = new System.Drawing.Size(625, 343);
             this.Controls.Add(this.tabControl1);
             this.Name = "Steganozor";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
@@ -277,6 +293,7 @@
         private System.Windows.Forms.TextBox tbFilename;
         private System.Windows.Forms.GroupBox groupBox4;
         private System.Windows.Forms.TrackBar trackBarShiftLevel;
+        private System.Windows.Forms.Label label2;
     }
 }
 

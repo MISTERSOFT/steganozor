@@ -36,6 +36,9 @@ namespace steganography
             // Config components
             openFileDialogImage.Filter = "JPeg Image|*.jpg|Bitmap Image|*.bmp|Gif Image|*.gif|Png Image|*.png";
             btnRun.Enabled = false;
+            trackBarShiftLevel.Minimum = 1;
+            trackBarShiftLevel.Maximum = 8;
+            trackBarShiftLevel.Value = 4;
         }
 
         /// <summary>
@@ -154,5 +157,9 @@ namespace steganography
             }
         }
 
+        private void trackBarShiftLevel_Scroll(object sender, EventArgs e)
+        {
+            steganolizer.Shift = trackBarShiftLevel.Value;
+        }
     }
 }
