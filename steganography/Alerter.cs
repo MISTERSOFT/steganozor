@@ -9,14 +9,14 @@ namespace steganography
 {
     public class Alerter
     {
-        public static void Error(string text, string caption)
+        public static void Error(string text)
         {
-            MessageBox.Show(text, caption, MessageBoxButtons.OK, MessageBoxIcon.Error);
+            MessageBox.Show(text, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
         }
 
-        public static void Info(string text, string caption)
+        public static void Info(string text)
         {
-            MessageBox.Show(text, caption, MessageBoxButtons.OK, MessageBoxIcon.Information);
+            MessageBox.Show(text, "Info", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
     }
 }

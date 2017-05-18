@@ -1,7 +1,6 @@
 ﻿using steganography.Exceptions;
 using System;
 using System.Drawing;
-using System.Threading;
 using System.Windows.Forms;
 
 namespace steganography
@@ -71,8 +70,6 @@ namespace steganography
         private void btnRun_Click(object sender, EventArgs e)
         {
             btnRun.Enabled = false;
-            btnRun.Text = "Please wait while processing...";
-            //Thread.Sleep(100);
 
             try
             {
@@ -81,18 +78,17 @@ namespace steganography
                 string filename = (!string.IsNullOrEmpty(tbFilename.Text)) ? tbFilename.Text : DEFAULT_SAVE_FILENAME;
                 result.Save(saveDestPath + "\\" + filename + ".jpg");
 
-                Alerter.Info("Work done !" + Environment.NewLine + "Image saved at : " + saveDestPath, "Info");
+                Alerter.Info("Work done !" + Environment.NewLine + "Image saved at : " + saveDestPath);
             }
             catch (SourceImageWidthGreaterThanHost ex)
             {
-                Alerter.Error(ex.Message, "Info");
+                Alerter.Error(ex.Message);
             }
             catch (SourceImageHeightGreaterThanHost ex)
             {
-                Alerter.Error(ex.Message, "Info");
+                Alerter.Error(ex.Message);
             } finally
             {
-                btnRun.Text = "Run";
                 btnRun.Enabled = true;
             }
         }
@@ -145,7 +141,7 @@ namespace steganography
                     }
                 } catch (Exception ex) {
 
-                    Alerter.Error("An error occured. Can not get image.", "Error");
+                    Alerter.Error("An error occured. Can not get image.");
 
                 }
             }
