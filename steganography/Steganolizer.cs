@@ -67,6 +67,10 @@ namespace steganography
             return hostImage != null && srcImage != null;
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <returns></returns>
         public Bitmap Execute()
         {
             CheckBeforeExecute();
