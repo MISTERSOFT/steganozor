@@ -7,3 +7,12 @@ F:\Projets\c_sharp\steganography\steganography\obj\Debug\steganography.csproj.Ge
 F:\Projets\c_sharp\steganography\steganography\obj\Debug\steganography.exe
 F:\Projets\c_sharp\steganography\steganography\obj\Debug\steganography.pdb
 F:\Projets\c_sharp\steganography\steganography\obj\Debug\steganography.Steganozor.resources
+D:\Projects\C#\steganozor\steganography\bin\Debug\steganography.exe.config
+D:\Projects\C#\steganozor\steganography\obj\Debug\steganography.exe
+D:\Projects\C#\steganozor\steganography\obj\Debug\steganography.pdb
+D:\Projects\C#\steganozor\steganography\bin\Debug\steganography.exe
+D:\Projects\C#\steganozor\steganography\bin\Debug\steganography.pdb
+D:\Projects\C#\steganozor\steganography\obj\Debug\steganography.csprojResolveAssemblyReference.cache
+D:\Projects\C#\steganozor\steganography\obj\Debug\steganography.Properties.Resources.resources
+D:\Projects\C#\steganozor\steganography\obj\Debug\steganography.Steganozor.resources
+D:\Projects\C#\steganozor\steganography\obj\Debug\steganography.csproj.GenerateResource.Cache

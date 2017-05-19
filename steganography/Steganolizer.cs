@@ -122,9 +122,14 @@ namespace steganography
         /// </summary>
         /// <param name="value"></param>
         /// <returns></returns>
-        private int GetMSB(int value)
+        private int GetHostMSB(int value)
         {
             return value >> shift;
+        }
+
+        private int GetSourceMSB(int value)
+        {
+            return value >> (8 - shift);
         }
 
         /// <summary>
@@ -145,7 +150,7 @@ namespace steganography
         /// <returns></returns>
         private int CombineBits(int hostValue, int srcValue)
         {
-            return To8Bits(GetMSB(hostValue)) + GetMSB(srcValue);
+            return To8Bits(GetHostMSB(hostValue)) + GetSourceMSB(srcValue);
         }
     }
 }
