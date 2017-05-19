@@ -1,5 +1,6 @@
 ﻿using System.Drawing;
 using steganography.Exceptions;
+using System;
 
 namespace steganography
 {
@@ -13,6 +14,10 @@ namespace steganography
         /// Image which will be hide into the host image
         /// </summary>
         private Bitmap srcImage;
+        /// <summary>
+        /// Image which probably hosting a image
+        /// </summary>
+        private Bitmap probablyHostImage;
         /// <summary>
         /// Use to shift bits
         /// </summary>
@@ -62,6 +67,19 @@ namespace steganography
             }
         }
 
+        public Bitmap ProbablyHostImage
+        {
+            get
+            {
+                return probablyHostImage;
+            }
+
+            set
+            {
+                probablyHostImage = value;
+            }
+        }
+
         /// <summary>
         /// Check if host and source images are not null
         /// </summary>
@@ -75,7 +93,7 @@ namespace steganography
         /// Use steganograpghy to hide source image into the host image.
         /// </summary>
         /// <returns>Both images in one</returns>
-        public Bitmap Execute()
+        public Bitmap ExecuteHide()
         {
             CheckBeforeExecute();
 
@@ -94,6 +112,28 @@ namespace steganography
                     int b = CombineBits(pixelHost.B, pixelSrc.B);
 
                     // Set new color for this pixel
+                    bmp.SetPixel(x, y, Color.FromArgb(r, g, b));
+                }
+            }
+
+            return bmp;
+        }
+
+        public Bitmap ExecuteFind()
+        {
+            Bitmap bmp = new Bitmap(ProbablyHostImage);
+
+            for (int x = 0; x < ProbablyHostImage.Width; x++)
+            {
+                for (int y = 0; y < ProbablyHostImage.Height; y++)
+                {
+                    Color pixel = ProbablyHostImage.GetPixel(x, y);
+
+                    // Get lsb
+                    int r = GetLSB(pixel.R);
+                    int g = GetLSB(pixel.G);
+                    int b = GetLSB(pixel.B);
+
                     bmp.SetPixel(x, y, Color.FromArgb(r, g, b));
                 }
             }
@@ -127,9 +167,19 @@ namespace steganography
             return value >> shift;
         }
 
+        /// <summary>
+        /// Get the Least Significant Bit
+        /// </summary>
+        /// <param name="value"></param>
+        /// <returns></returns>
         private int GetSourceMSB(int value)
         {
             return value >> (8 - shift);
+        }
+
+        private int GetLSB(int value)
+        {
+            return (byte)(value << shift);
         }
 
         /// <summary>

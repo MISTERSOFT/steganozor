@@ -10,7 +10,8 @@ namespace steganography
         private enum IMG
         {
             HOST,
-            SRC
+            SRC,
+            FIND
         };
 
         private Steganolizer steganolizer;
@@ -29,9 +30,13 @@ namespace steganography
             // Config components
             openFileDialogImage.Filter = "JPeg Image|*.jpg|Bitmap Image|*.bmp|Gif Image|*.gif|Png Image|*.png";
             btnRun.Enabled = false;
+            btnRunDetection.Enabled = false;
             trackBarShiftLevel.Minimum = 1;
             trackBarShiftLevel.Maximum = 8;
             trackBarShiftLevel.Value = 4;
+            trackBarShiftLevelDetect.Minimum = 1;
+            trackBarShiftLevelDetect.Maximum = 8;
+            trackBarShiftLevelDetect.Value = 4;
         }
 
         /// <summary>
@@ -73,7 +78,7 @@ namespace steganography
 
             try
             {
-                Bitmap result = steganolizer.Execute();
+                Bitmap result = steganolizer.ExecuteHide();
 
                 string filename = (!string.IsNullOrEmpty(tbFilename.Text)) ? tbFilename.Text : DEFAULT_SAVE_FILENAME;
                 result.Save(saveDestPath + "\\" + filename + ".jpg");
@@ -108,10 +113,13 @@ namespace steganography
                     saveDestPath = folderBrowserDialogDst.SelectedPath;
 
                     tbSaveDst.Text = saveDestPath;
+                    tbSavePathDetect.Text = saveDestPath;
+
                 }
             }
 
             EnableApplySteganography();
+            EnableFind();
         }
 
         /// <summary>
@@ -129,15 +137,19 @@ namespace steganography
                     if (type.Equals(IMG.HOST))
                     {
 
-                        steganolizer.HostImage = Image.FromFile(openFileDialogImage.FileName) as Bitmap;
+                        steganolizer.HostImage = GetImageFromDialog();
                         tbHost.Text = openFileDialogImage.FileName;
 
-                    } else
+                    } else if (type.Equals(IMG.SRC))
                     {
 
-                        steganolizer.SrcImage = Image.FromFile(openFileDialogImage.FileName) as Bitmap;
+                        steganolizer.SrcImage = GetImageFromDialog();
                         tbSrc.Text = openFileDialogImage.FileName;
 
+                    } else if (type.Equals(IMG.FIND))
+                    {
+                        steganolizer.ProbablyHostImage = GetImageFromDialog();
+                        tbDetectImg.Text = openFileDialogImage.FileName;
                     }
                 } catch (Exception ex) {
 
@@ -145,6 +157,11 @@ namespace steganography
 
                 }
             }
+        }
+
+        private Bitmap GetImageFromDialog()
+        {
+            return Image.FromFile(openFileDialogImage.FileName) as Bitmap;
         }
 
         /// <summary>
@@ -158,6 +175,13 @@ namespace steganography
             }
         }
 
+        private void EnableFind()
+        {
+            if (saveDestPath != string.Empty && steganolizer.ProbablyHostImage != null)
+            {
+                btnRunDetection.Enabled = true;
+            }
+        }
 
         /// <summary>
         /// Handle the shift value given by the track bar
@@ -167,6 +191,50 @@ namespace steganography
         private void trackBarShiftLevel_Scroll(object sender, EventArgs e)
         {
             steganolizer.Shift = trackBarShiftLevel.Value;
+        }
+
+        /// <summary>
+        /// Find image into image
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void btnRunDetection_Click(object sender, EventArgs e)
+        {
+            // tbDetectSaveFilename.Text - save filename
+            btnRunDetection.Enabled = false;
+
+            try
+            {
+                Bitmap result = steganolizer.ExecuteFind();
+
+                string filename = (!string.IsNullOrEmpty(tbDetectSaveFilename.Text)) ? tbDetectSaveFilename.Text : DEFAULT_SAVE_FILENAME;
+                result.Save(tbSavePathDetect.Text + "\\" + filename + ".jpg");
+
+                Alerter.Info("Work done !" + Environment.NewLine + "Image saved at : " + saveDestPath);
+            }
+            catch (Exception ex)
+            {
+                Alerter.Error(ex.Message);
+            }
+            finally
+            {
+                btnRunDetection.Enabled = true;
+            }
+
+        }
+
+        /// <summary>
+        /// Select image which probably host another image
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void btnDetectSelectImg_Click(object sender, EventArgs e)
+        {
+            openFileDialogImage.Title = "Select the image which probably host another image";
+
+            DisplaySelectImage(IMG.FIND);
+
+            EnableFind();
         }
     }
 }
